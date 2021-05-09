@@ -1,0 +1,280 @@
+
+<button type="button" (click)="createNewUser()" mdbBtn color="dark" mdbWavesEffect>Create new client</button>
+<button type="button" (click)="exportexcel()" mdbBtn color="dark" mdbWavesEffect>Export clients</button>
+<button type="button" mdbBtn color="dark" mdbWavesEffect>Import clients</button>
+<button type="button" mdbBtn color="dark" mdbWavesEffect>Sell data</button>
+
+<!-- Material form register -->
+<mdb-card *ngIf="showNewUser">
+
+  <mdb-card-header class="black white-text text-center py-3">
+    <h5>
+      <strong>Create New Client</strong>
+    </h5>
+  </mdb-card-header>
+
+  <!--Card content-->
+  <mdb-card-body class="px-lg-3 pt-0">
+
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;">
+
+      <div class="form-row">
+        <div class="col">
+          <!-- Client name -->
+          <div class="md-form">
+            <input type="text" id="materialRegisterFormClientName" autocomplete="off" [(ngModel)]="clientName" name="clientName" class="form-control" mdbInput>
+            <label for="materialRegisterFormClientName">Client name<a class="red-text" size="2x">*</a></label>
+          </div>
+        </div>
+        <div class="col">
+          <!-- Address -->
+          <div class="md-form">
+            <input type="email" id="materialRegisterFormAddress" autocomplete="off" [(ngModel)]="address" name="address" class="form-control" mdbInput>
+            <label for="materialRegisterFormAddress">Address<a class="red-text" size="2x">*</a></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- E-mail -->
+      <div class="md-form mt-0">
+        <input type="email" id="materialRegisterFormEmail" autocomplete="off" [(ngModel)]="username" name="username" class="form-control" mdbInput>
+        <label for="materialRegisterFormEmail">E-mail<a class="red-text" size="2x">*</a></label>
+      </div>
+
+      <!-- Password -->
+      <div class="md-form">
+        <input type="password" id="materialRegisterFormPassword" [(ngModel)]="password" name="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
+               mdbInput>
+        <label for="materialRegisterFormPassword">Password<a class="red-text" size="2x">*</a></label>
+        <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          At least 8 characters and 1 digit
+        </small>
+      </div>
+
+      <!-- Phone number -->
+      <div class="md-form">
+        <input type="number" id="materialRegisterFormPhone" autocomplete="off" class="form-control" [(ngModel)]="phoneNumber" name="phoneNumber" aria-describedby="materialRegisterFormPhoneHelpBlock"
+               mdbInput>
+        <label for="materialRegisterFormPhone">Phone number<a class="red-text" size="2x">*</a></label>
+        <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        </small>
+      </div>
+
+      <!-- Registration code -->
+      <div class="md-form">
+        <input type="number" id="materialRegisterFormRegistrationCode" autocomplete="off" class="form-control" [(ngModel)]="registrationCode" name="registrationCode" aria-describedby="materialRegisterFormPhoneHelpBlock"
+               mdbInput>
+        <label for="materialRegisterFormPhone">Registration code</label>
+        <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        </small>
+      </div>
+
+      <!-- Company accounts -->
+      <div class="row">
+        <div class="col-md-6 mx-auto d-flex justify-content-center">
+          <mdb-checkbox [default]="true" >Company account</mdb-checkbox>
+        </div>
+      </div>
+
+      <!-- Sign up button -->
+      <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+              type="submit" (click)="createNewClientButton()">
+        Create New Client
+      </button>
+
+    </form>
+    <!-- Form -->
+
+  </mdb-card-body>
+
+</mdb-card>
+<!-- Material form register -->
+
+<!-- Material form editClient -->
+<mdb-card *ngIf="showEditUser">
+
+  <mdb-card-header class="black white-text text-center py-3">
+    <h5>
+      <strong>Edit Client Info</strong>
+    </h5>
+  </mdb-card-header>
+
+  <!--Card content-->
+  <mdb-card-body class="px-lg-3 pt-0">
+
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;">
+
+      <div class="form-row">
+        <div class="col">
+          <!-- Client name -->
+          <div class="md-form">
+            <input type="text" id="materialEditFormClientName" [(ngModel)]="editFormClientName" name="editFormClientName" class="form-control" mdbInput>
+            <label for="materialEditFormClientName">Client name<a class="red-text" size="2x">*</a></label>
+          </div>
+        </div>
+        <div class="col">
+          <!-- Address -->
+          <div class="md-form">
+            <input type="email" id="materialEditFormAddress" [(ngModel)]="editFormAddress" name="editFormAddress" class="form-control" mdbInput>
+            <label for="materialEditFormAddress">Address<a class="red-text" size="2x">*</a></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- E-mail -->
+      <div class="md-form mt-0">
+        <input type="email" id="materialEditFormEmail" [(ngModel)]="editFormEmail" name="editFormEmail" class="form-control" mdbInput>
+        <label for="materialEditFormEmail">E-mail<a class="red-text" size="2x">*</a></label>
+      </div>
+
+      <!-- Phone number -->
+      <div class="md-form">
+        <input type="number" id="materialEditFormPhone" [(ngModel)]="editFormPhone" name="editFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
+               mdbInput>
+        <label for="materialEditFormPhone">Phone number<a class="red-text" size="2x">*</a></label>
+        <small id="materialEditFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        </small>
+      </div>
+
+      <!-- Registration code -->
+      <div class="md-form">
+        <input type="number" id="materialEditFormRegistrationCode" [(ngModel)]="editFormRegistrationCode" name="editFormRegistrationCode" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
+               mdbInput>
+        <label for="materialEditFormRegistrationCode">Registration code</label>
+        <small id="materialEditFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        </small>
+      </div>
+
+      <!-- Company accounts -->
+      <div class="row">
+        <div class="col-md-6 mx-auto d-flex justify-content-center">
+          <mdb-checkbox [default]="true">Company account</mdb-checkbox>
+        </div>
+      </div>
+
+      <!-- Sign up button -->
+      <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+              type="submit" (click)=editUserButton()>
+        Submit changes
+      </button>
+
+    </form>
+    <!-- Form -->
+
+  </mdb-card-body>
+
+</mdb-card>
+<!-- Material form editClient -->
+
+<mdb-card cascade="true" narrower="true" *ngIf="showTable">
+  <!--Card image-->
+  <div class="view view-cascade grey narrower py-2  d-flex justify-content-between align-items-center">
+
+    <div>
+    </div>
+
+    <a href="" class="white-text mx-4">Clients</a>
+
+    <div>
+
+    </div>
+
+  </div>
+  <!--/Card image-->
+
+  <div class="px-4">
+
+    <div class="table-wrapper">
+      <!--Table-->
+      <table class="mb-0" mdbTable hover="true" id="excel-table" *ngIf="showTable">
+
+        <!--Table head-->
+        <thead>
+          <tr>
+            <th>
+              <mdb-checkbox></mdb-checkbox>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('clientId')">
+                Client Id
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('userId')">
+                User Id
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('email')">
+                Email
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('companyAccount')">
+                Company Account
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('clientName')">
+                Client Name
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('address')">
+                Address
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('phoneNumber')">
+                Phone Number
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('registrationCode')">
+                Registration Code
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              Actions
+              <mdb-icon class="ml-1"></mdb-icon>
+            </th>
+          </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody>
+          <tr *ngFor="let client of clients;let i = index">
+            <th scope="row">
+              <mdb-checkbox></mdb-checkbox>
+            </th>
+            <td>{{client.clientId}}</td>
+            <td>{{client.userId}}</td>
+            <td>{{client.email}}</td>
+            <td>{{client.companyAccount}}</td>
+            <td>{{client.clientName}}</td>
+            <td>{{client.address}}</td>
+            <td>{{client.phoneNumber}}</td>
+            <td>{{client.registrationCode}}</td>
+            <td>
+              <button mdbBtn (click)="editUser(client.clientId, client.userId, client.email, client.clientName, client.address, client.phoneNumber, client.registrationCode)" color="indigo" size="sm" mdbWavesEffect type="button" class="m-0" value=i>Edit</button>
+              <button mdbBtn (click)="deleteUser(client.clientId,client.email)" color="red" size="sm" mdbWavesEffect type="button" class="m-0" value=i>Delete</button>
+            </td>
+          </tr>
+        </tbody>
+        <!--Table body-->
+      </table>
+      <!--Table-->
+    </div>
+  </div>
+</mdb-card>
+

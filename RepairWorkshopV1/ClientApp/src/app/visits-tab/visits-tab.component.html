@@ -1,0 +1,197 @@
+<button type="button" mdbBtn color="dark" mdbWavesEffect>Add new visit</button>
+<button type="button" mdbBtn color="dark" (click)="exportexcel()" mdbWavesEffect>Export visits</button>
+<button type="button" mdbBtn color="dark" mdbWavesEffect>Import visits</button>
+
+<!-- Material form register -->
+<!-- Material form register -->
+<!-- Material form editVisit -->
+<mdb-card *ngIf="showEditVisitInput" autocomplete="off">
+
+  <mdb-card-header class="black white-text text-center py-3">
+    <h5>
+      <strong>Edit Visit</strong>
+    </h5>
+  </mdb-card-header>
+
+  <!--Card content-->
+  <mdb-card-body class="px-lg-3 pt-0">
+
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;">
+
+      <div class="form-row">
+        <div class="col">
+          <!-- Mileage -->
+          <div class="md-form">
+            <input type="number" [(ngModel)]="visitMileage" name="visitMileage" class="form-control" mdbInput>
+            <label>Mileage<a class="red-text" size="2x">*</a></label>
+          </div>
+        </div>
+        <div class="col">
+          <!-- Visit Start Date -->
+          <div class="md-form">
+            <input type="datetime" [(ngModel)]="visitStartDate" name="visitStartDate" class="form-control" mdbInput>
+            <label>Visit Start Date<a class="red-text" size="2x">*</a></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visit End Date -->
+      <div class="md-form mt-0">
+        <input type="datetime" [(ngModel)]="visitEndDate" name="visitEndDate" class="form-control" mdbInput>
+        <label>Visit End Date</label>
+      </div>
+
+      <!-- Notes -->
+      <div class="md-form">
+        <input type="text" [(ngModel)]="visitNotes" name="visitNotes" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
+               mdbInput>
+        <label>Notes<a class="red-text" size="2x">*</a></label>
+      </div>
+
+      <!-- Visit Price -->
+      <div class="md-form">
+        <input type="number" class="form-control" [(ngModel)]="visitPrice" name="visitPrice" aria-describedby="materialRegisterFormPhoneHelpBlock"
+               mdbInput>
+        <label>Visit Price</label>
+        <small class="form-text text-muted mb-4">
+        </small>
+      </div>
+
+      <!-- Confirmed -->
+      <div class="md-form">
+        <input type="checkbox" class="form-control" [(ngModel)]="visitConfirmed" name="visitConfirmed" aria-describedby="materialRegisterFormPhoneHelpBlock"
+               mdbInput>
+        <label>Visit Confimed</label>
+        <small class="form-text text-muted mb-4">
+        </small>
+      </div>
+
+      <!-- Edit visit Button -->
+      <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+              type="submit" (click)="editVisitButton()">
+        Edit Visit
+      </button>
+
+    </form>
+    <!-- Form -->
+
+  </mdb-card-body>
+
+</mdb-card>
+<!-- Material form editVisit -->
+
+<mdb-card cascade="true" narrower="true" *ngIf="showTable">
+  <!--Card image-->
+  <div class="view view-cascade grey narrower py-2  d-flex justify-content-between align-items-center">
+
+    <div>
+    </div>
+
+    <a href="" class="white-text mx-4">Clients</a>
+
+    <div>
+
+    </div>
+
+  </div>
+  <!--/Card image-->
+
+  <div class="px-4">
+
+    <div class="table-wrapper">
+      <!--Table-->
+      <table class="mb-0" mdbTable hover="true" id="visit-data" *ngIf="showTable">
+
+        <!--Table head-->
+        <thead>
+          <tr>
+            <th>
+              <mdb-checkbox></mdb-checkbox>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('clientId')">
+                Visit Id
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('userId')">
+                Client Id
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('email')">
+                Vehicle Id
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('companyAccount')">
+                Mileage
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('clientName')">
+                Visit Start Date
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('address')">
+                Visit End Date
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a (click)="sortBy('phoneNumber')">
+                Notes
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+            </th>
+            <th class="th-lg">
+              Visit Price
+              <mdb-icon class="ml-1"></mdb-icon>
+            </th>
+            <th class="th-lg">
+              Confirmed
+              <mdb-icon class="ml-1"></mdb-icon>
+            </th>
+            <th class="th-lg">
+              Progress
+              <mdb-icon class="ml-1"></mdb-icon>
+            </th>
+          </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody>
+          <tr *ngFor="let visit of visits;let i = index">
+            <th scope="row">
+              <mdb-checkbox></mdb-checkbox>
+            </th>
+            <td>{{visit.visitId}}</td>
+            <td>{{visit.clientId}}</td>
+            <td>{{visit.vehicleId}}</td>
+            <td>{{visit.mileage}}</td>
+            <td>{{visit.visitStartDate}}</td>
+            <td>{{visit.visitEndDate}}</td>
+            <td>{{visit.notes}}</td>
+            <td>{{visit.visitPrice}}</td>
+            <td>{{visit.confirmed}}</td>
+            <td>{{visit.progress}}</td>
+            <td>
+              <button mdbBtn (click)="showEditVisit(visit.visitId,visit.clientId,visit.vehicleId,visit.mileage,visit.visitStartDate,visit.visitEndDate,visit.notes,visit.visitPrice,visit.confirmed,visit.progress)" color="indigo" size="sm" mdbWavesEffect type="button" class="m-0" value=i>Edit</button>
+              <button mdbBtn (click)="deleteVisit(visit.visitId)" color="red" size="sm" mdbWavesEffect type="button" class="m-0" value=i>Delete</button>
+            </td>
+          </tr>
+        </tbody>
+        <!--Table body-->
+      </table>
+      <!--Table-->
+    </div>
+  </div>
+</mdb-card>
+
